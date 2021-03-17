@@ -67,6 +67,7 @@ var createComponent = function(canvas, schema){
                     component_group.getObjects()[item].set('opacity', 0);
             }
         }
+        canvas.requestRenderAll();
     };
     var createGroup = function(){
         if(!image_loaded){
