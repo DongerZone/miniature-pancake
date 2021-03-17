@@ -1,0 +1,68 @@
+<!Doctype HTML>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.1/fabric.js"></script>
+        <title>Arduino Simulator</title>
+    </head>
+    <body>
+        <canvas id="main" width="1000" height="600" style="border:1px solid #000000"></canvas>
+        <script>
+
+            var canvas = new fabric.Canvas('main');
+            // create Arduino Group
+            var arduino_group;
+            // create the Arduino image
+            var arduino_img;
+            var image_loaded = false;
+            fabric.Image.fromURL('arduino-uno.png', function(oImg){
+                arduino_img = oImg.scale(0.3);
+
+                image_loaded = true;
+            })
+            //create pin square
+            var pinHover = new fabric.Rect({
+                fill: 'red',
+                width: 5,
+                height: 5,
+                top: 7,
+                left: 265,
+                opacity: 0
+            });
+            var fadeAnim = function(option){
+                if(option && option.subTargets[0] && (option.subTargets[0].type == 'rect')){
+                    arduino_group.getObjects()[1].set('opacity', 1);
+                    arduino_group.set("lockMovementX", true);
+                    arduino_group.set("lockMovementY", true);
+                }
+                else{
+                    arduino_group.getObjects()[1].set('opacity', 0);
+                    arduino_group.set("lockMovementX", false);
+                    arduino_group.set("lockMovementY", false);
+                }
+                canvas.requestRenderAll();
+            };
+            var createGroup = function(){
+                if(!image_loaded){
+                    setTimeout(function () { createGroup() }, 100);
+                    return;
+                }
+
+                arduino_group = new fabric.Group([arduino_img, pinHover], {
+                    left: 100,
+                    top: 100,
+                    subTargetCheck: true
+                });
+                arduino_group.on('mouseover', function(option){
+                    canvas.on("mouse:move", fadeAnim)
+                });
+                arduino_group.on('mouseout', function(option){
+                    fadeAnim();
+                    canvas.off("mouse:move", fadeAnim);
+                });
+                arduino_group.set('hoverCursor', 'pointer');
+                canvas.add(arduino_group.scale(2));
+            };
+            createGroup();
+        </script>
+    </body>
+</html>

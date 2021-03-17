@@ -1,0 +1,67 @@
+{
+    component: {
+        imageURL: "exampleComponent/arduino-uno.png",
+        pins: {
+            D0: {
+                width: 17,
+                height: 17,
+                x: 884,
+                y: 24
+            },
+            D1: {
+                width: 17,
+                height: 17,
+                x: 852,
+                y: 24
+            },
+            D2: {
+                width: 17,
+                height: 17,
+                x: 820,
+                y: 24
+            },
+            D3: {
+                width: 17,
+                height: 17,
+                x: 788,
+                y: 24
+            },
+            D4: {
+                width: 17,
+                height: 17,
+                x: 756,
+                y: 24
+            },
+            D5: {
+                width: 17,
+                height: 17,
+                x: 724,
+                y: 24
+            },
+            D6: {
+                width: 17,
+                height: 17,
+                x: 692,
+                y: 24
+            },
+            D7: {
+                width: 17,
+                height: 17,
+                x: 660,
+                y: 24
+            },
+            D8: {
+                width: 17,
+                height: 17,
+                x: 605,
+                y: 24
+            },
+            D9: {
+                width: 17,
+                height: 17,
+                x: 573,
+                y: 24
+            }
+        }
+    }
+};
